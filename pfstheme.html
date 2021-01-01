@@ -4,20 +4,35 @@
     <head>
 	<style type="text/css">
 	    *{ margin:0; padding:0; }
+	    ul li {
+	        display: inline;
+	        margin: 0% 1%; /*Horizontal spacing compresses as page narrows*/
+	        background-color: #00ff00; /*testing*/
+	    }
+	    li a:hover { /*Hover colour of links*/
+	        color: #00aa00;
+	    }
 		.titlebar {
-			background-color: #ff0000;
-		}	
+			background-color: #ff0000; /*testing*/
+		}
+		.titlebar img {
+		    float: left;
+		}
 		.navigbar {
-			background-color: #ff3333;
+			background-color: #ff3333; /*testing*/
+			display:block;
 		}
 		.bodybar {
-			background-color: #ff6666;
+			background-color: #ff6666; /*testing*/
+		}
+		.bodybox {
+		    background-color: #0000ff; /*testing*/
 		}
 		.paginbar {
-			background-color: #ff9999;
+			background-color: #ff9999; /*testing*/
 		}
 		.credbar {
-			background-color: #ffcccc;
+			background-color: #ffcccc; /*testing*/
 		}
     </style>
     </head>
@@ -26,8 +41,8 @@
     <!--The header bar-->
     <a href="{BlogURL}" id="bloglink"><div class="titlebar">
         <img src="{PortraitURL-64}">
-        <h1>{Title}</h1>
-        <h2>{Description}</h2>
+        <div><h1>{Title}</h1>
+        <h2>{Description}</h2></div>
     </div></a>
 
     <!--The navigation menu-->
@@ -37,7 +52,12 @@
         {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
 	</ul></div>
 	
-	<div class="bodybar"><br></div>
+	<!--The main body of the page-->
+	<div class="bodybar">
+	    {block:Posts}
+	    <div class=bodybox><br></div>
+	    {/block:Posts}
+	</div>
 	
 	<!--The pagination features-->
 	<div class="paginbar">

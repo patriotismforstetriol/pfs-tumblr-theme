@@ -12,11 +12,27 @@
 	    li a:hover { /*Hover colour of links*/
 	        color: #00aa00;
 	    }
+	    h1 {
+	        font-family: {TitleFont};
+	        color: {TitleColor};
+	        font-weight: {TitleFontWeight};
+	    }
 		.titlebar {
 			background-color: #ff0000; /*testing*/
+			
+			/*Header image management. */
+			{block:ShowHeaderImage}background-image: url({HeaderImage});{/block:ShowHeaderImage}
+			background-position: center;
+            background-size: fill; /* vs cover? */
+            background-repeat: no-repeat;
+            
+            {block:ShowAvatar}min-height: 64px;{/block:ShowAvatar} /*Make sure avatar has something to float on. @can you have a variable to track this number, for when padding comes into play?*/
 		}
 		.titlebar img {
 		    float: left;
+		}
+		.circle img { /* For avatar shape */
+		    border-radius: 50%;
 		}
 		.navigbar {
 			background-color: #ff3333; /*testing*/
@@ -34,6 +50,7 @@
 		.credbar {
 			background-color: #ffcccc; /*testing*/
 		}
+		{CustomCSS}
     </style>
     
         <meta charset='UTF-8'>
@@ -44,9 +61,9 @@
     <body>
     <!--The header bar-->
     <a href="{BlogURL}" id="bloglink"><div class="titlebar">
-        <img src="{PortraitURL-64}">
-        <div><h1>{Title}</h1>
-        <h2>{Description}</h2></div>
+        {block:ShowAvatar}<span class="{AvatarShape}"><img src="{PortraitURL-64}"></span>{/block:ShowAvatar}
+        <div>{block:ShowTitle}<h1>{Title}</h1>{/block:ShowTitle}
+        {block:ShowDescription}<h2>{Description}</h2>{/block:ShowDescription}</div>
     </div></a>
 
     <!--The navigation menu-->
@@ -78,9 +95,9 @@
             <li>{block:PreviousPost}<a href="{PreviousPost}">&#171; Previous Post</a>{/block:PreviousPost}</li>
              
             <li>{block:NextPost}<a href="{NextPost}">Next Post &#187;</a>{/block:NextPost}</li>
-        </ul>{/block:PermalinkPagination}       
+        </ul>{/block:PermalinkPagination}
             
-    </div>  
+    </div>
     
 	<div class="credbar"> Content ©{CopyrightYears} {BlogURL}. Theme by https://patriotismforstetriol.tumblr.com </div>
     </body>

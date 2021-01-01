@@ -35,6 +35,10 @@
 			background-color: #ffcccc; /*testing*/
 		}
     </style>
+    
+        <meta charset='UTF-8'>
+        <link rel="icon" href="{Favicon}">
+        <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
     </head>
 	
     <body>
@@ -68,8 +72,15 @@
                 <li>{block:JumpPage}<a class="jump_page" href="{URL}">{PageNumber}</a>{/block:JumpPage}</li>
             {/block:JumpPagination}
             <li>{block:NextPage}<a href="{NextPage}">Next &#187;</a>{/block:NextPage}</li>
-        </ul>{/block:Pagination}</div>
-        
+        </ul>{/block:Pagination}
+            
+        {block:PermalinkPagination}<ul>
+            <li>{block:PreviousPost}<a href="{PreviousPost}">&#171; Previous Post</a>{/block:PreviousPost}</li>
+             
+            <li>{block:NextPost}<a href="{NextPost}">Next Post &#187;</a>{/block:NextPost}</li>
+        </ul>{/block:PermalinkPagination}       
+            
+    </div>  
     
 	<div class="credbar"> Content ©{CopyrightYears} {BlogURL}. Theme by https://patriotismforstetriol.tumblr.com </div>
     </body>

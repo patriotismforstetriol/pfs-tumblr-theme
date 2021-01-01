@@ -1,56 +1,405 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-            "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-    <head>
-	<style type="text/css">
-	    *{ margin:0; padding:0; }
-		.titlebar {
-			background-color: #ff0000;
-		}	
-		.navigbar {
-			background-color: #ff3333;
-		}
-		.bodybar {
-			background-color: #ff6666;
-		}
-		.paginbar {
-			background-color: #ff9999;
-		}
-		.credbar {
-			background-color: #ffcccc;
-		}
-    </style>
-    </head>
-	
-    <body>
-    <!--The header bar-->
-    <a href="{BlogURL}" id="bloglink"><div class="titlebar">
-        <img src="{PortraitURL-64}">
-        <h1>{Title}</h1>
-        <h2>{Description}</h2>
-    </div></a>
+<!DOCTYPE html>
 
-    <!--The navigation menu-->
-	<div class="navigbar"><ul>
-	    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-        {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
-        {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
-	</ul></div>
-	
-	<div class="bodybar"><br></div>
-	
-	<!--The pagination features-->
-	<div class="paginbar">
-	    {block:Pagination}<ul>
-	        <li>{block:PreviousPage}<a href="{PreviousPage}">&#171; Previous</a>{/block:PreviousPage}</li>
-            {block:JumpPagination length="7"}
-                <li>{block:CurrentPage}<span class="current_page"><b>{PageNumber} / {TotalPages}</b></span>{/block:CurrentPage}</li>
-                <li>{block:JumpPage}<a class="jump_page" href="{URL}">{PageNumber}</a>{/block:JumpPage}</li>
-            {/block:JumpPagination}
-            <li>{block:NextPage}<a href="{NextPage}">Next &#187;</a>{/block:NextPage}</li>
-        </ul>{/block:Pagination}</div>
+
+<html lang='en'>
+    <head>
+        <style type="text/css">
+            /*To add: cats*/
         
-    
-	<div class="credbar"> Content ©{CopyrightYears} {BlogURL}. Theme by https://patriotismforstetriol.tumblr.com </div>
+            h1 { /*Puts title next to avatar*/
+                display: inline;
+                position: relative;
+                bottom: 15px;
+                padding: 0px 20px;
+                
+            }
+            .headerbox {
+                margin: 20px 30px 0px 30px;
+                padding: 30px 30px 1px 30px;
+                border-radius: 6px;
+                
+                /*background-image: url({HeaderImage});*/
+                background-color: {AccentColor};
+                
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;/*or can use contain + norepeat*/
+                
+                
+            }
+            .cont {
+                padding: 10px;
+            }
+            header a {
+                text-decoration: none;
+                color: {TitleColor};
+            }
+            .navigation ul {
+                /*vertical-align: top*/
+                position: relative;
+                left: 40px;
+                bottom: 7px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .navigation li { 
+                background-color: {AccentColor};
+                float: left;
+                margin: 1% 1%;
+                border-radius: 0px 0px 4px 4px;
+                /*outline-style: solid;
+                outline-width: thin;*/
+            }
+            .navigation li a {
+                display: block;
+                text-align: center;
+                padding: 10px 10px;
+                text-decoration: none;
+            }
+            body {
+                background-color: {BackgroundColor};
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h3 {
+                color: {TitleColor};
+            }
+            .post {
+                background-color: {AccentColor};
+                width: 80%;
+                margin: 20px auto;
+                padding: 15px 15px;
+                border-radius: 6px;
+            }
+            /*.page {
+                background-color: {AccentColor};
+                width: 80%;
+                margin: 20px auto;
+                padding: 15px 15px;
+                border-radius: 6px;
+            }*/
+            .separator {
+                background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
+                height: 5px;
+            }
+            .infofooter {
+                list-style: none;
+                padding: 0px 0px 1px 0px;
+            }
+            .infofooter li {
+                float: right;
+                padding: 0px 10px 0px 0px;
+            }
+            .post a {
+                text-decoration: none;
+    	        color: #000;
+            }
+            .perm a { /*unecessary, was just for a test*/
+                text-decoration: none;
+            }
+            .singleimg {
+                width: 100%; /*So it fills the post box*/
+            }
+            .photoset ul {
+                list-style: none;
+                border: 0;
+                padding: 0;
+            }
+            .plink {
+                background-color: {BackgroundColor};
+                padding: 40px;
+                border: 10px;
+            }
+            .chat li {
+                list-style: none;
+            }
+            .question {
+                background-color: {BackgroundColor};
+                padding: 40px;
+                border: 10px;                
+            }
+            .namelite {
+                
+            }
+            .namelite a {
+            }
+            .name a {
+                text-decoration: underline;
+                color: #444;
+            }
+            .source {
+                margin-left: 40px;
+            }
+            .pagenum {
+                margin-left: 40%;
+            }
+            .pagenum ul {
+                /*vertical-align: top*/
+                /*position: relative;
+                left: 40%;
+                bottom: 6px;
+                list-style: none;
+                margin: auto;
+                padding: 0;*/
+            }
+            .pagenum li { 
+                background-color: {AccentColor};
+                float: left;
+                height: 20px;
+                padding: 5px;
+                list-style: none;
+                /*outline-style: solid;
+                outline-width: thin;*/
+            }
+            .pagenum li a {
+                /*display: block;*/
+                text-align: center;
+                padding: 10px 10px;
+                text-decoration: none;
+                color: {TitleColor};
+            }
+            .credfooter {
+                background-color: {AccentColor};
+                width: 50%;
+                position: center;
+                margin-left: 25%;
+                text-align: center;
+                border-radius: 6px 6px 0px 0px;
+                font-size: 8px;
+                color: #333;
+            }
+
+
+                        @media only screen and (min-width: 768px) {
+                .headerbox {
+                    margin: auto;
+                    width: 90%;
+                }
+                .navigation ul {
+                    position: relative;
+                    left: 150px;
+                    bottom: 12px;
+                }
+                .post {
+                    width: 700px;
+                }
+            }
+        </style>
+        
+    <meta charset='UTF-8'>
+    <link rel="icon" href="{Favicon}">
+        <title>{Title}</title>
+        <meta name="viewport" content="width=device-width" />
+        <meta name="color:Divider" content="#000000">
+        <!--Thanks http://themesbyeris.tumblr.com/tutorial02 for the above-->
+    </head>
+    <body>
+        <header>
+        <a href="{BlogURL}" id="bloglink"><div class="headerbox">
+            <img src="{PortraitURL-64}">
+            <h1>{Title}</h1>
+            <!--<h2>{Description}</h2>-->
+        </div></a><div class="navigation">
+            <ul>
+                {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+                {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
+                {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
+            </ul>
+        </div>
+        </header>
+        
+        <br>
+        <br>
+        {block:Pages} <!-- still shows up notes, so not quite working yet-->
+        {/block:Pages}
+        
+        {block:Posts}
+            <div class="post">
+            
+            {block:Text}
+	        	{block:NotReblog}<div class="cont">
+                    <a href="{Permalink}" class="perm">
+                    {block:Title}
+		   		        <h3><a class="perm">{Title}</a></h3>
+	        	    {/block:Title}
+	        	    {Body}</a></div>{/block:NotReblog}
+	        	{block:RebloggedFrom}
+	        	    <div class="cont">
+                    <a href="{Permalink}" class="perm">
+                    {block:Title}
+		   		        <h3>{Title}</h3>
+	        	    {/block:Title}
+	        	    <div class="name">{Body}</div></a></div>
+	        	{/block:RebloggedFrom}
+            {/block:Text}
+        
+            {block:Photo}
+            {LinkOpenTag}{block:HighRes} {/block:HighRes}
+                <img class="singleimg cont" src="{PhotoURL-500}">{LinkCloseTag}
+			    {block:Caption}
+			        <a href="{Permalink}" class="perm"><div class="namelite">{Caption}</div></a>
+			    {/block:Caption}
+            {/block:Photo}
+            
+            {block:Panorama}
+                <li class="cont panorama">
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                        {LinkCloseTag}{block:Caption}
+                            <div class="caption" class="perm">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                This post type (panorama) has not been tested and may not display.
+            {/block:Panorama}
+            {block:Photoset}
+                
+                <div class="photoset">
+                <ul>
+                <li>
+                        {block:Photos}
+                        <a href="{PhotoURL-HighRes}">{block:HighRes} {/block:HighRes}
+                        <img class="singleimg" src="{PhotoURL-500}"></a>
+                        {/block:Photos}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                </li></ul></div>
+                
+            {/block:Photoset}
+            {block:Quote}
+                <div class="quote">
+                        <a href="{Permalink}" class="perm"><h3><i>“{Quote}”</i></h3>
+
+                        {block:Source}
+                            <div class="source">‒ {Source}</div>
+                        {/block:Source}
+                        </a>
+                        <br>
+                </div>
+            {/block:Quote}
+            {block:Link}
+                <div class="link">
+                <div class="plink">
+                <a href="{URL}" class="link" {Target}>
+                    {block:Thumbnail}
+                    <img src="{Thumbnail}">
+                    {/block:Thumbnail}
+                    {block:Excerpt}{Excerpt}{/block:Excerpt}
+                    {block:Author}
+                    <div class="link-author">{Author}</div>
+                    {/block:Author}
+                    
+                    <h3>{Name}</h3>
+                            
+                        </a></div> <a href="{Permalink}" class="perm">
+
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </a></div>
+            {/block:Link}
+            {block:Chat}
+                <a href="{Permalink}"><div class="chat">
+                        {block:Title}
+                            <h3><a href="{Permalink}" class="perm">{Title}</a></h3>
+                        {/block:Title}
+
+                        <ul class="chat">
+                            {block:Lines}
+                                <li class="{Alt} user_{UserNumber}">
+                                    {block:Label}
+                                        <b><span class="label">{Label}</span></b>
+                                    {/block:Label}{Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </div></a>
+            {/block:Chat}
+            {block:Video}
+                <div class="cont video">
+                        {Video-500}
+                        <a href="{Permalink}" class="perm">{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}</a>
+                    </div>
+            {/block:Video}
+            {block:Audio}
+                <li class="cont audio">
+                        {AudioEmbed}{block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </li>
+                This post type (audio) has not been tested and may not display.
+            {/block:Audio}
+            {block:Answer}
+                <div class="cont ans">
+                <div class="question">
+                <div class="name">{Asker}: </div>
+                {Question}</div>
+                
+                <div class="cont">{block:Answerer}
+                <div class="name">{Answerer}</div>
+                                {Answer}
+                {/block:Answerer}</div>
+
+                
+                <div class="name"></div>
+                <a href="{Permalink}">{Replies}</a>
+            </div>
+            {/block:Answer}
+            
+            <div class="postfooter">
+                <div class="separator"></div>
+
+            {block:HasTags}
+                {block:Tags}
+                   <i><a href="{TagURL}" class="perm">#{Tag}  </a></i>
+                {block:Tags}
+            {/block:HasTags}
+            
+                <div class="infofooter">
+                <ul class="infofooter">
+                    <li><a href="{Permalink}">‒ {NoteCount} notes ‒</a></li>
+            
+                    <li>{block:Date}
+                    ‒ {Year} {ShortMonth} {DayOfMonth}
+                    {/block:Date} </li>           
+            
+                    <li>{LikeButton}</li>
+                    <li>{ReblogButton}</li>
+                </ul>
+                </div>
+            </div>
+            </div>
+            
+        {/block:Posts}
+        
+        {block:TagPage}
+        {/block:TagPage}
+        
+        {block:PostNotes}<div class="post">
+            <div class="name">{PostNotes}</div>
+            <!--This is so ugly--></div>
+        {/block:PostNotes}
+        
+        {block:Pagination}<div class="pagenum"
+        <ul><li>
+            {block:PreviousPage}
+                <a href="{PreviousPage}">&#171; Previous</a>
+            {/block:PreviousPage}</li>
+            {block:JumpPagination length="7"}
+                {block:CurrentPage}<li><span class="current_page"><b>{PageNumber} / {TotalPages}</b></span></li>{/block:CurrentPage}
+                {block:JumpPage}<li>
+                    <a class="jump_page" href="{URL}">{PageNumber}</a></li>
+                {/block:JumpPage}{/block:JumpPagination}
+            <li>{block:NextPage}
+                <a href="{NextPage}">Next &#187;</a> 
+            {/block:NextPage}</li>
+        </ul></div>{/block:Pagination}
+
+
+        <div class="credfooter"> 
+            Theme also by patriotismforstetriol
+        </div>
     </body>
 </html>

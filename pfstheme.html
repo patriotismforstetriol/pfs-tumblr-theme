@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+	<style type="text/css">
+	    *{ margin:0; padding:0; }
+		.titlebar {
+			background-color: #ff0000;
+		}	
+		.navigbar {
+			background-color: #ff3333;
+		}
+		.bodybar {
+			background-color: #ff6666;
+		}
+		.paginbar {
+			background-color: #ff9999;
+		}
+		.credbar {
+			background-color: #ffcccc;
+		}
+    </style>
+    </head>
+	
+    <body>
+    <!--The header bar-->
+    <a href="{BlogURL}" id="bloglink"><div class="titlebar">
+        <img src="{PortraitURL-64}">
+        <h1>{Title}</h1>
+        <h2>{Description}</h2>
+    </div></a>
+
+    <!--The navigation menu-->
+	<div class="navigbar"><ul>
+	    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+        {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
+        {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
+	</ul></div>
+	
+	<div class="bodybar"><br></div>
+	
+	<!--The pagination features-->
+	<div class="paginbar">
+	    {block:Pagination}<ul>
+	        <li>{block:PreviousPage}<a href="{PreviousPage}">&#171; Previous</a>{/block:PreviousPage}</li>
+            {block:JumpPagination length="7"}
+                <li>{block:CurrentPage}<span class="current_page"><b>{PageNumber} / {TotalPages}</b></span>{/block:CurrentPage}</li>
+                <li>{block:JumpPage}<a class="jump_page" href="{URL}">{PageNumber}</a>{/block:JumpPage}</li>
+            {/block:JumpPagination}
+            <li>{block:NextPage}<a href="{NextPage}">Next &#187;</a>{/block:NextPage}</li>
+        </ul>{/block:Pagination}</div>
+        
+    
+	<div class="credbar"> Content ©{CopyrightYears} {BlogURL}. Theme by https://patriotismforstetriol.tumblr.com </div>
+    </body>
+</html>

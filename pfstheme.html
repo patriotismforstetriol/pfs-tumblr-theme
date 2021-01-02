@@ -76,6 +76,8 @@
         <meta charset='UTF-8'>
         <!--User variables-->
         <meta name="color:Divider" content="#000099">
+        <meta name="if:ShowTime" content="0">
+        <meta name="if:RelatedPosts" content="0">
         
         <link rel="icon" href="{Favicon}">
         <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
@@ -111,11 +113,14 @@
             {/block:HasTags}
     	    
     	    <ul>
-    	        {block:IndexPage}<li><a href="{Permalink}">‒ {NoteCount} notes ‒</a></li>{/block:IndexPage}
-    	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}">‒ {NoteCount} notes ‒</a></li>{/block:NoteCount}{/block:PermalinkPage}
-                <li>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth}{/block:Date} </li>
+    	        {block:IndexPage}<li><a href="{Permalink}"> {NoteCount} notes ‒</a></li>{/block:IndexPage}
+    	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}"> {NoteCount} notes ‒</a></li>{/block:NoteCount}{/block:PermalinkPage}
+                <li>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
+                    {block:IfShowTime}at {24HourWithZero}:{Minutes} UTC-5{/block:IfShowTime}
+                -{/block:Date} </li>
                 <li>{LikeButton size="20"}</li>
                 <li>{ReblogButton size="20"}</li>
+                {block:PinnedPostLabel}<li>{PinnedPostLabel}</li>{/block:PinnedPostLabel}
     	    </ul>
 	    </div>
 	    
@@ -131,15 +136,17 @@
 	        {block:Post9}<div class="cat"><img id="yaya9"></div>{/block:Post9}
 	        {block:Post10}<div class="cat"><img id="yaya10"></div>{/block:Post10}
 	    
+	        <!-- Notes on permalink posts-->
+	        {PostNotes-16}
+	        
 	    {/block:Posts}
-	    
 	    
 	</div>
 	
 	<!--The pagination features-->
 	<div class="paginbar">
 	    {block:Pagination}<ul>
-	        
+	        <!--Regular blog pagination-->
 	        <li>{block:PreviousPage}<a href="{PreviousPage}">&#171; Previous</a>{/block:PreviousPage}</li>
             {block:JumpPagination length="7"}
                 <li>{block:CurrentPage}<span class="current_page"><b>{PageNumber} / {TotalPages}</b></span>{/block:CurrentPage}</li>
@@ -148,11 +155,18 @@
             <li>{block:NextPage}<a href="{NextPage}">Next &#187;</a>{/block:NextPage}</li>
         </ul>{/block:Pagination}
             
+        <!--Permalink navigation-->
         {block:PermalinkPagination}<ul>
-            <li>{block:PreviousPost}<a href="{PreviousPost}">&#171; Previous Post</a>{/block:PreviousPost}</li>
+            <li>{block:PreviousPost}<a href="{PreviousPost}">&#171; Previous post</a>{/block:PreviousPost}</li>
              
-            <li>{block:NextPost}<a href="{NextPost}">Next Post &#187;</a>{/block:NextPost}</li>
+            <li>{block:NextPost}<a href="{NextPost}">Next post &#187;</a>{/block:NextPost}</li>
         </ul>{/block:PermalinkPagination}
+        
+        <!--Day page navigation-->
+        {block:DayPagination}<ul>
+            <li>{block:PreviousDayPage}<a href="{PreviousDayPage}">&#171; Previous day</a>{/block:PreviousDayPage}</li>
+            <li>{block:NextDayPage}<a href="{NextDayPage}">Next day &#187;</a>{/block:NextDayPage}</li>
+        </ul>{/block:DayPagination}
             
     </div>
     

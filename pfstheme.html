@@ -58,9 +58,10 @@
 		}
 		.cat {
 	        width: 100%;
+	        overflow: hidden;
 		}
 		.cat img {
-		    width: 100%;
+		    height: 100%;
 		    display: block;
 		}
 		.separator {
@@ -76,7 +77,6 @@
         <meta charset='UTF-8'>
         <!--User variables-->
         <meta name="color:Divider" content="#000099">
-        <meta name="text:ButtonSize" content="20"> <!-- Can't be more than 100-->
         
         <link rel="icon" href="{Favicon}">
         <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
@@ -154,8 +154,11 @@
 	<!--Cat swapper script-->
 	<script>
 	const images = [{JSHeaderImage}, {JSPortraitURL-64}];
+	const anchors = ["left", "right"];
+	let element = document.getElementById("yaya");
 	let i = Math.floor((Math.random() * images.length));
-	document.getElementById("yaya").src = images[i];
+	element.src = images[i];
+	element.style.float = anchors[i];
 	</script>
     </body>
 </html>

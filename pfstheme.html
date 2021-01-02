@@ -44,16 +44,36 @@
 		.bodybox {
 		    background-color: #0000ff; /*testing*/
 		}
+		.bodybox ul {
+		    height: 20px;
+		}
+		.bodybox li {
+		    float: right;
+		}
 		.paginbar {
 			background-color: #ff9999; /*testing*/
 		}
 		.credbar {
 			background-color: #ffcccc; /*testing*/
 		}
+		.cat {
+		    background-color: #aaaaaa;
+		}
+		.separator {
+            background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
+            height: 5px;
+        }
+        .tag {
+            color: {TitleColor};
+        }
 		{CustomCSS}
     </style>
     
         <meta charset='UTF-8'>
+        <!--User variables-->
+        <meta name="color:Divider" content="#000099">
+        <meta name="text:ButtonSize" content="20"> <!-- Can't be more than 100-->
+        
         <link rel="icon" href="{Favicon}">
         <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
     </head>
@@ -75,14 +95,39 @@
 	
 	<!--The main body of the page-->
 	<div class="bodybar">
-	    {block:Posts}
-	    <div class=bodybox><br></div>
+	    {block:Posts}<div class=bodybox>
+    	    
+    	    <!--The post body -->
+    	    <br>
+    	    
+    	    <!--The start of the post footer -->
+    	    <div class="separator"></div>
+    	    
+    	    {block:HasTags}
+                {block:Tags}<i><a href="{TagURL}" class="tag">#{Tag}</a>  </i>{block:Tags}
+            {/block:HasTags}
+    	    
+    	    <ul>
+    	        {block:IndexPage}<li><a href="{Permalink}">‒ {NoteCount} notes ‒</a></li>{/block:IndexPage}
+    	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}">‒ {NoteCount} notes ‒</a></li>{/block:NoteCount}{/block:PermalinkPage}
+                <li>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth}{/block:Date} </li>
+                <li>{LikeButton size="20"}</li>
+                <li>{ReblogButton size="20"}</li>
+    	    </ul>
+	    </div>
+	    
+	        <!-- The cat-->
+	        {block:Post6}<div class=cat>I'm a cat</div>{/block:Post6}
+	    
 	    {/block:Posts}
+	    
+	    
 	</div>
 	
 	<!--The pagination features-->
 	<div class="paginbar">
 	    {block:Pagination}<ul>
+	        
 	        <li>{block:PreviousPage}<a href="{PreviousPage}">&#171; Previous</a>{/block:PreviousPage}</li>
             {block:JumpPagination length="7"}
                 <li>{block:CurrentPage}<span class="current_page"><b>{PageNumber} / {TotalPages}</b></span>{/block:CurrentPage}</li>

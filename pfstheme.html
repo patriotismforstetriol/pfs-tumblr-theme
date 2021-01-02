@@ -45,7 +45,7 @@
 		    background-color: #0000ff; /*testing*/
 		}
 		.bodybox ul {
-		    height: 20px;
+		    height: 25px;
 		}
 		.bodybox li {
 		    float: right;
@@ -57,8 +57,11 @@
 			background-color: #ffcccc; /*testing*/
 		}
 		.cat {
-		    background-position: center;
-		    background-repeat: no-repeat;
+	        width: 100%;
+		}
+		.cat img {
+		    width: 100%;
+		    display: block;
 		}
 		.separator {
             background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
@@ -118,7 +121,7 @@
 	    </div>
 	    
 	        <!-- The cat-->
-	        {block:Post6}<div class="cat" id="yaya">I'm a cat</div>{/block:Post6}
+	        {block:Post6}<div class="cat"><img id="yaya"></div>{/block:Post6}
 	    
 	    {/block:Posts}
 	    
@@ -150,14 +153,9 @@
 	
 	<!--Cat swapper script-->
 	<script>
-	const images = [{JSHeaderImage}, {JSPortraitURL-64}, {JSPortraitURL-32}];
-	const anchors = ["center top", "left center", "right bottom"];
-	//console.log(images);
-	let element = document.getElementById("yaya");
+	const images = [{JSHeaderImage}, {JSPortraitURL-64}];
 	let i = Math.floor((Math.random() * images.length));
-	console.log(i);
-	element.style.backgroundImage = ('url("' + images[i] + '")');
-	element.style.backgroundPosition = anchors[i];
+	document.getElementById("yaya").src = images[i];
 	</script>
     </body>
 </html>

@@ -58,10 +58,9 @@
 		}
 		.cat {
 	        width: 100%;
-	        overflow: hidden;
 		}
 		.cat img {
-		    height: 100%;
+		    width: 100%;
 		    display: block;
 		}
 		.separator {
@@ -121,7 +120,16 @@
 	    </div>
 	    
 	        <!-- The cat-->
-	        {block:Post6}<div class="cat"><img id="yaya"></div>{/block:Post6}
+	        {block:Post1}<div class="cat"><img id="yaya1"></div>{/block:Post1}
+	        {block:Post2}<div class="cat"><img id="yaya2"></div>{/block:Post2}
+	        {block:Post3}<div class="cat"><img id="yaya3"></div>{/block:Post3}
+	        {block:Post4}<div class="cat"><img id="yaya4"></div>{/block:Post4}
+	        {block:Post5}<div class="cat"><img id="yaya5"></div>{/block:Post5}
+	        {block:Post6}<div class="cat"><img id="yaya6"></div>{/block:Post6}
+	        {block:Post7}<div class="cat"><img id="yaya7"></div>{/block:Post7}
+	        {block:Post8}<div class="cat"><img id="yaya8"></div>{/block:Post8}
+	        {block:Post9}<div class="cat"><img id="yaya9"></div>{/block:Post9}
+	        {block:Post10}<div class="cat"><img id="yaya10"></div>{/block:Post10}
 	    
 	    {/block:Posts}
 	    
@@ -154,11 +162,11 @@
 	<!--Cat swapper script-->
 	<script>
 	const images = [{JSHeaderImage}, {JSPortraitURL-64}];
-	const anchors = ["left", "right"];
-	let element = document.getElementById("yaya");
-	let i = Math.floor((Math.random() * images.length));
-	element.src = images[i];
-	element.style.float = anchors[i];
+	let i = Math.floor((Math.random() * images.length)); // the randomly chosen image
+	let po = Math.floor((Math.random() * 10) + 1).toString(); // the randomly chosen position on page
+	try {
+	    document.getElementById("yaya" + po).src = images[i]; // make the image visible.
+	} catch (TypeError) { }; // you were unlucky with po not being on the page and don't get a cat
 	</script>
     </body>
 </html>

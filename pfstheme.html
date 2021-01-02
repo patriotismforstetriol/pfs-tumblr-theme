@@ -57,7 +57,8 @@
 			background-color: #ffcccc; /*testing*/
 		}
 		.cat {
-		    background-color: #aaaaaa;
+		    background-position: center;
+		    background-repeat: no-repeat;
 		}
 		.separator {
             background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
@@ -117,7 +118,7 @@
 	    </div>
 	    
 	        <!-- The cat-->
-	        {block:Post6}<div class=cat>I'm a cat</div>{/block:Post6}
+	        {block:Post6}<div class="cat" id="yaya">I'm a cat</div>{/block:Post6}
 	    
 	    {/block:Posts}
 	    
@@ -145,5 +146,18 @@
     </div>
     
 	<div class="credbar"> Content ©{CopyrightYears} {BlogURL}. Theme by https://patriotismforstetriol.tumblr.com </div>
+	
+	
+	<!--Cat swapper script-->
+	<script>
+	const images = [{JSHeaderImage}, {JSPortraitURL-64}, {JSPortraitURL-32}];
+	const anchors = ["center top", "left center", "right bottom"];
+	//console.log(images);
+	let element = document.getElementById("yaya");
+	let i = Math.floor((Math.random() * images.length));
+	console.log(i);
+	element.style.backgroundImage = ('url("' + images[i] + '")');
+	element.style.backgroundPosition = anchors[i];
+	</script>
     </body>
 </html>

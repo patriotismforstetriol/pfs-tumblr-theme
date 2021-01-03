@@ -3,11 +3,14 @@
 <html>
     <head>
 	<style type="text/css">
-	    *{ margin:0; padding:0; }
+	    *{ margin:0; padding:0; border-radius: 6px; }
 	    ul li {
-	        display: inline;
-	        margin: 0% 1%; /*Horizontal spacing compresses as page narrows*/
+	        display: inline-block;
+	        /*margin: 0% 1%; Horizontal spacing compresses as page narrows*/
 	        background-color: {AccentColor}; 
+	        padding: 5px;
+		    margin: 0px 1% 3px 1%; /*To keep them separate when we have multiple lines*/
+		    border-radius: 0px 0px 4px 4px; /*To round lower two corners*/
 	    }
 	    li a:hover { /*Hover colour of links*/
 	        color: #00aa00;
@@ -22,8 +25,6 @@
                 font-family: Arial, Helvetica, sans-serif;
             }
 		.titlebar {
-			background-color: #ff0000; /*testing*/
-			
 			/*Header image management. */
 			{block:ShowHeaderImage}background-image: url({HeaderImage});{/block:ShowHeaderImage}
 			background-position: center;
@@ -31,49 +32,67 @@
             background-repeat: no-repeat;
             
             {block:ShowAvatar}min-height: 64px;{/block:ShowAvatar} /*Make sure avatar has something to float on. @can you have a variable to track this number, for when padding comes into play?*/
+            
+            width: 98%;
+            margin: 0% 1%;
+		}
+		.padding {
+		    width: 100%;
+		    padding: 10px;
 		}
 		.titlebar img {
 		    float: left;
+		    margin: 0px 15px 0px 0px; /*Pad the RHS only*/
 		}
 		.circle img { /* For avatar shape */
 		    border-radius: 50%;
 		}
 		.navigbar {
-			background-color: #ff3333; /*testing*/
-			display:block;
+			width: 95%;
+			margin: 0% 1% 20px 4%;
 		}
 		.bodybar {
-			background-color: #ff6666; /*testing*/
+			margin: 0 auto;
 		}
 		.bodybox {
 		    background-color: {AccentColor};
+		    
 		}
 		.bodybox ul {
 		    display: inline-block;
 		    width: 100%;
-		    /*height: 25px;*/
 		}
 		.bodybox li {
 		    float: right;
 		}
 		.paginbar {
-			background-color: #ff9999; /*testing*/
-			display: block;
+			width: 90%;
+			margin: 0px auto;
+			text-align: center; /*Center the page values*/
 		}
 		.credbar {
-			background-color: #ffcccc; /*testing*/
+			background-color: {AccentColor};
+			
+			width: 50%;
+			margin: 5px auto; /*Center & get some space on page*/
+			text-align: center;
 		}
 		
 		.cat {
 	        width: 100%;
+	        border-radius: 0px;
+	        margin: 10px 0px; /*Acts as separator between posts*/
 		}
 		.cat img {
 		    width: 100%;
-		    display: block;
+		    display:block;
 		}
 		
 		.link {
 		    background-color: #008800;
+		}
+		.chat {
+		    list-style: none; /*Get rid of the numbering*/
 		}
 		.chat li {
 		    float: none;
@@ -126,10 +145,10 @@
 	
     <body>
     <!--The header bar-->
-    <a href="{BlogURL}" id="bloglink"><div class="titlebar">
+    <a href="{BlogURL}" id="bloglink"><div class="titlebar"><div class="padding">
         {block:ShowAvatar}<span class="{AvatarShape}"><img src="{PortraitURL-64}"></span>{/block:ShowAvatar}
         <div>{block:ShowTitle}<h1>{Title}</h1>{/block:ShowTitle}
-        {block:ShowDescription}<h2>{Description}</h2>{/block:ShowDescription}</div>
+        {block:ShowDescription}<h2>{Description}</h2>{/block:ShowDescription}</div></div>
     </div></a>
 
     <!--The navigation menu-->
@@ -298,30 +317,30 @@
 	<div class="paginbar">
 	    {block:Pagination}<ul>
 	        <!--Regular blog pagination-->
-	        <li>{block:PreviousPage}<a href="{PreviousPage}">&#171; Previous</a>{/block:PreviousPage}</li>
+	        {block:PreviousPage}<li><a href="{PreviousPage}">&#171; Previous</a></li>{/block:PreviousPage}
             {block:JumpPagination length="7"}
-                <li>{block:CurrentPage}<span class="current_page"><b>{PageNumber} / {TotalPages}</b></span>{/block:CurrentPage}</li>
-                <li>{block:JumpPage}<a class="jump_page" href="{URL}">{PageNumber}</a>{/block:JumpPage}</li>
+                {block:CurrentPage}<li><span class="current_page"><b>{PageNumber} / {TotalPages}</b></span></li>{/block:CurrentPage}
+                {block:JumpPage}<li><a class="jump_page" href="{URL}">{PageNumber}</a></li>{/block:JumpPage}
             {/block:JumpPagination}
-            <li>{block:NextPage}<a href="{NextPage}">Next &#187;</a>{/block:NextPage}</li>
+            {block:NextPage}<li><a href="{NextPage}">Next &#187;</a></li>{/block:NextPage}
         </ul>{/block:Pagination}
             
         <!--Permalink navigation-->
         {block:PermalinkPagination}<ul>
-            <li>{block:PreviousPost}<a href="{PreviousPost}">&#171; Previous post</a>{/block:PreviousPost}</li>
+            {block:PreviousPost}<li><a href="{PreviousPost}">&#171; Previous post</a></li>{/block:PreviousPost}
              
-            <li>{block:NextPost}<a href="{NextPost}">Next post &#187;</a>{/block:NextPost}</li>
+            {block:NextPost}<li><a href="{NextPost}">Next post &#187;</a></li>{/block:NextPost}
         </ul>{/block:PermalinkPagination}
         
         <!--Day page navigation-->
         {block:DayPagination}<ul>
-            <li>{block:PreviousDayPage}<a href="{PreviousDayPage}">&#171; Previous day</a>{/block:PreviousDayPage}</li>
-            <li>{block:NextDayPage}<a href="{NextDayPage}">Next day &#187;</a>{/block:NextDayPage}</li>
+            {block:PreviousDayPage}<li><a href="{PreviousDayPage}">&#171; Previous day</a></li>{/block:PreviousDayPage}
+            {block:NextDayPage}<li><a href="{NextDayPage}">Next day &#187;</a></li>{/block:NextDayPage}
         </ul>{/block:DayPagination}
             
     </div>
     
-	<div class="credbar"> Content ©{CopyrightYears} {BlogURL}. Theme by https://patriotismforstetriol.tumblr.com </div>
+	<div class="credbar"><h6>Theme by patriotismforstetriol</h6></div>
 	
 	<!--Cat swapper script-->
 	<script>
@@ -329,7 +348,9 @@
 	let i = Math.floor((Math.random() * images.length)); // the randomly chosen image
 	let po = Math.floor((Math.random() * 10) + 1).toString(); // the randomly chosen position on page
 	try {
-	    document.getElementById("yaya" + po).src = images[i]; // make the image visible.
+	    let yaya = document.getElementById("yaya" + po);
+	    yaya.src = images[i]; // make the image visible.
+	    yaya.style.margin = "-10px 0px"; // it touches the adjacent posts
 	} catch (TypeError) { }; // you were unlucky with po not being on the page and don't get a cat
 	</script>
     </body>

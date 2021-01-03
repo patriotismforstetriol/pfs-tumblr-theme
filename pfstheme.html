@@ -9,11 +9,11 @@
 	        /*margin: 0% 1%; Horizontal spacing compresses as page narrows*/
 	        background-color: {AccentColor}; 
 	        padding: 5px;
-		    margin: 0px 1% 3px 1%; /*To keep them separate when we have multiple lines*/
+		    margin: 0px 3px 3px 3px; /*To keep them separate when we have multiple lines*/
 		    border-radius: 0px 0px 4px 4px; /*To round lower two corners*/
 	    }
 	    li a:hover { /*Hover colour of links*/
-	        color: #00aa00;
+	        color: {color:Divider};
 	    }
 	    h1 {
 	        font-family: {TitleFont};
@@ -56,6 +56,7 @@
 		}
 		.bodybox {
 		    background-color: {AccentColor};
+		    padding: 20px 20px 0px 20px;
 		    
 		}
 		.bodybox ul {
@@ -64,6 +65,7 @@
 		}
 		.bodybox li {
 		    float: right;
+		    padding: 0px;
 		}
 		.paginbar {
 			width: 90%;
@@ -87,30 +89,41 @@
 		    width: 100%;
 		    display:block;
 		}
-		
-		.link {
-		    background-color: #008800;
-		}
 		.chat {
 		    list-style: none; /*Get rid of the numbering*/
+		    margin: 0px 10px;
 		}
 		.chat li {
 		    float: none;
-		}
-		.chat .odd {
-		    background-color: #0055cc;
+		    padding: 0px 5px;
 		}
 		h5 {
 		    display: inline;
 		}
 		.subcontent {
-		    background-color: #00aa00;
+		    margin: 10px;
+		    padding: 30px;
+		    border: 2px solid;
+		    border-color: {color:Divider};
+		}
+		.notes {
+		    background-color: {AccentColor};
+		    display: block;
+		    padding: 10px;
+		    list-style: none;
 		}
 		
 		.separator {
             background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
             height: 5px;
+            margin: 5px 0px;
         }
+        .miniseparator {
+            background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
+            height: 2px;
+            margin: 5px 0px;
+        }
+        
         .tag {
             color: {TitleColor};
         }
@@ -125,10 +138,6 @@
                 width: 90%;
             }
         }
-
-
-
-        
 		{CustomCSS}
     </style>
     
@@ -166,7 +175,7 @@
     	    {block:Text}
                     <a href="{Permalink}">{block:Title}<h3>{Title}</h3>{/block:Title}</a>
                     {block:NotReblog}{Body}{/block:NotReblog}
-	                {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -213,7 +222,7 @@
             {/block:Quote}
             
             {block:Link}
-                <div class="link"><a href="{URL}" {Target}>
+                <div class="subcontent"><a href="{URL}" {Target}>
                     <h3>{Name}</h3>
                     {block:Excerpt}{Excerpt}{/block:Excerpt}
                     {block:Author}{Author}{/block:Author}</a></div>
@@ -229,11 +238,9 @@
     	    
     	   {block:Chat}
                 {block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}
-                <ol class="chat">{block:Lines}
-                        <li class="{Alt}">
-                            {block:Label}<h5>{Label}</h5>{/block:Label}
-                            {Line}
-                        </li>
+                <ol class="chat">{block:Lines}<li>
+                    {block:Label}<h5>{Label}</h5>{/block:Label}
+                    {Line}</li>
                 {/block:Lines}</ol>
             {/block:Chat}
             
@@ -260,8 +267,8 @@
             {/block:Audio}
             
             {block:Answer}
-                <div class="subcontent"><h5>{Asker}: </h5>{Question}</div>
-                {block:Answerer}<h5>{Answerer}: </h5>{Answer}{/block:Answerer}
+                <div class="subcontent"><h4>{Asker}: </h4>{Question}</div>
+                {block:Answerer}<h4>{Answerer}: </h4>{Answer}{/block:Answerer}
                 {block:NotReblog}{Replies}{/block:NotReblog}
 			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
 	                    <li><img src="{PortraitURL-24}"></li>
@@ -281,18 +288,18 @@
             {/block:HasTags}
     	    
     	    <ul>
-    	        {block:IndexPage}<li><a href="{Permalink}"> {NoteCount} notes ‒</a></li>{/block:IndexPage}
-    	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}"> {NoteCount} notes ‒</a></li>{/block:NoteCount}{/block:PermalinkPage}
+    	        {block:IndexPage}<li><a href="{Permalink}"><h5>‒ {NoteCount} notes ‒</h5></a></li>{/block:IndexPage}
+    	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}"><h5>‒ {NoteCount} notes ‒</h5></a></li>{/block:NoteCount}{/block:PermalinkPage}
                 <li><a href="{BlogURL}day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/">
-                    {block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
+                    <h5>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
                     {block:IfShowTime}at {24HourWithZero}:{Minutes} UTC-5{/block:IfShowTime}
-                ‒{/block:Date} </a></li>
+                ‒{/block:Date}</h5></a></li>
                 <li>{LikeButton size="20"}</li>
                 <li>{ReblogButton size="20"}</li>
-                {block:Submission}<li><a href="{SubmitterURL}">Submitted by: {Submitter}</a></li>{/block:Submission}
-                {block:PinnedPostLabel}<li>{PinnedPostLabel}</li>{/block:PinnedPostLabel}
+                {block:Submission}<li><a href="{SubmitterURL}"><h5>Submitted by: {Submitter}</h5></a></li>{/block:Submission}
+                {block:PinnedPostLabel}<li><h5>{PinnedPostLabel}</h5></li>{/block:PinnedPostLabel}
     	    </ul>
-	    </div>
+	        </div>
 	    
 	        <!-- The cat-->
 	        {block:Post1}<div class="cat"><img id="yaya1"></div>{/block:Post1}
@@ -307,7 +314,7 @@
 	        {block:Post10}<div class="cat"><img id="yaya10"></div>{/block:Post10}
 	    
 	        <!-- Notes on permalink posts-->
-	        {PostNotes-16}
+	        {block:PermalinkPage}<div class="notes">{PostNotes-16}</div>{/block:PermalinkPage}
 	        
 	    {/block:Posts}
 	    

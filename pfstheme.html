@@ -144,31 +144,48 @@
 	    {block:Posts}<div class=bodybox>
     	    
     	    <!--The post body -->
-    	    <!--Reblogs not done yet -->
-    	    {block:RebloggedFrom}<a href="{ReblogParentURL}"><ul>
-	            <li><img src="{ReblogParentPortraitURL-24}"></li>
-	            <li><h4>{ReblogParentName}</h4></li>
-	        </ul></a>{/block:RebloggedFrom}
-    	    
     	    {block:Text}
                     <a href="{Permalink}">{block:Title}<h3>{Title}</h3>{/block:Title}</a>
-                    {Body}
+                    {block:NotReblog}{Body}{/block:NotReblog}
+	                {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	                {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Text}
             
             {block:Photo}
                 {block:HighRes}<a href="{PhotoURL-HighRes}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width=100%></a>{/block:HighRes}
-			    {block:Caption}{Caption}{/block:Caption}
+			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Photo}
             
             {block:Panorama}
                 <a href="{PhotoURL-Panorama}"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width=100%></a>
-			    {block:Caption}{Caption}{/block:Caption}
-			    This post type (panorama) is untested.
+			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Panorama}
             
             {block:Photoset}
                 {Photoset}
-                {block:Caption}{Caption}{/block:Caption}
+                {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Photoset}
             
             {block:Quote}
@@ -182,7 +199,13 @@
                     {block:Excerpt}{Excerpt}{/block:Excerpt}
                     {block:Author}{Author}{/block:Author}</a></div>
                     
-                    {block:Description}{Description}{/block:Description}
+                {block:NotReblog}{block:Description}{Description}{/block:Description}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Link}
     	    
     	   {block:Chat}
@@ -197,18 +220,36 @@
             
             {block:Video}
                 {Video-500}
-                {block:Caption}{Caption}{/block:Caption}
+                {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Video}
             
             {block:Audio}
                 {AudioEmbed}
-                {block:Caption}{Caption}{/block:Caption}
-                This post type (audio) has not been tested and may not display.
+                {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Audio}
             
             {block:Answer}
                 <div class="subcontent"><h5>{Asker}: </h5>{Question}</div>
                 {block:Answerer}<h5>{Answerer}: </h5>{Answer}{/block:Answerer}
+                {block:NotReblog}{Replies}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Answer}
     	    
     	    {block:More}<a href="{Permalink}">&#187; Read more &#171;</a>{/block:More}

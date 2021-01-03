@@ -49,13 +49,16 @@
 		    background-color: {AccentColor};
 		}
 		.bodybox ul {
-		    height: 25px;
+		    display: inline-block;
+		    width: 100%;
+		    /*height: 25px;*/
 		}
 		.bodybox li {
 		    float: right;
 		}
 		.paginbar {
 			background-color: #ff9999; /*testing*/
+			display: block;
 		}
 		.credbar {
 			background-color: #ffcccc; /*testing*/
@@ -98,6 +101,14 @@
                 width: 700px;
             }
         }
+        @media only screen and (max-width: 719px) {
+            .bodybar {
+                width: 90%;
+            }
+        }
+
+
+
         
 		{CustomCSS}
     </style>
@@ -145,12 +156,12 @@
             {/block:Text}
             
             {block:Photo}
-                {block:HighRes}<a href="{PhotoURL-HighRes}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></a>{/block:HighRes}
+                {block:HighRes}<a href="{PhotoURL-HighRes}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width=100%></a>{/block:HighRes}
 			    {block:Caption}{Caption}{/block:Caption}
             {/block:Photo}
             
             {block:Panorama}
-                <a href="{PhotoURL-Panorama}"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"></a>
+                <a href="{PhotoURL-Panorama}"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width=100%></a>
 			    {block:Caption}{Caption}{/block:Caption}
 			    This post type (panorama) is untested.
             {/block:Panorama}
@@ -215,7 +226,7 @@
                 <li><a href="{BlogURL}day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/">
                     {block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
                     {block:IfShowTime}at {24HourWithZero}:{Minutes} UTC-5{/block:IfShowTime}
-                -{/block:Date} </a></li>
+                ‒{/block:Date} </a></li>
                 <li>{LikeButton size="20"}</li>
                 <li>{ReblogButton size="20"}</li>
                 {block:Submission}<li><a href="{SubmitterURL}">Submitted by: {Submitter}</a></li>{/block:Submission}

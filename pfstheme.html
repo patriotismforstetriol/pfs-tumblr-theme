@@ -7,7 +7,7 @@
 	    ul li {
 	        display: inline;
 	        margin: 0% 1%; /*Horizontal spacing compresses as page narrows*/
-	        background-color: #00ff00; /*testing*/
+	        background-color: {AccentColor}; 
 	    }
 	    li a:hover { /*Hover colour of links*/
 	        color: #00aa00;
@@ -17,6 +17,10 @@
 	        color: {TitleColor};
 	        font-weight: {TitleFontWeight};
 	    }
+	    body {
+                background-color: {BackgroundColor};
+                font-family: Arial, Helvetica, sans-serif;
+            }
 		.titlebar {
 			background-color: #ff0000; /*testing*/
 			
@@ -42,7 +46,7 @@
 			background-color: #ff6666; /*testing*/
 		}
 		.bodybox {
-		    background-color: #005500; /*testing*/
+		    background-color: {AccentColor};
 		}
 		.bodybox ul {
 		    height: 25px;
@@ -88,6 +92,13 @@
         .tag {
             color: {TitleColor};
         }
+        
+        @media only screen and (min-width: 720px) {
+            .bodybar {
+                width: 700px;
+            }
+        }
+        
 		{CustomCSS}
     </style>
     
@@ -201,9 +212,10 @@
     	    <ul>
     	        {block:IndexPage}<li><a href="{Permalink}"> {NoteCount} notes ‒</a></li>{/block:IndexPage}
     	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}"> {NoteCount} notes ‒</a></li>{/block:NoteCount}{/block:PermalinkPage}
-                <li>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
+                <li><a href="{BlogURL}day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/">
+                    {block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
                     {block:IfShowTime}at {24HourWithZero}:{Minutes} UTC-5{/block:IfShowTime}
-                -{/block:Date} </li>
+                -{/block:Date} </a></li>
                 <li>{LikeButton size="20"}</li>
                 <li>{ReblogButton size="20"}</li>
                 {block:Submission}<li><a href="{SubmitterURL}">Submitted by: {Submitter}</a></li>{/block:Submission}

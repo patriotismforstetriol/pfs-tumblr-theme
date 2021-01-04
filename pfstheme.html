@@ -27,10 +27,18 @@
 	    h1 { /*Used for: Blog Title*/
 	        font-family: {TitleFont};
 	        font-weight: {TitleFontWeight};
-	        font-size: 3em;
+	        font-size: 2.5em;
 	    }
-	    h2 { /*Used for: Blog description*/
-	       font-size: 1.2em;
+	    h2 { /*Used for: Blog description. Larger if title is not shown*/
+	        font-family: {TitleFont};
+	        font-weight: {TitleFontWeight};
+	        font-size: 1.5em;
+	        {block:ShowTitle}
+	            font-family: Arial, Helvetica, sans-serif;
+	            font-weight: normal;
+	            font-size: 1.2em;
+	        {/block:ShowTitle}
+	       
 	    }
 	    h3 { /*Used for: Post title/quote/link title*/}
 	    h4 { /*Used for: usernames. Explicitly defined because we need to copy this over manually for permalink page tags*/
@@ -59,12 +67,14 @@
             
 		.titlebar {
 			/*Header image management. */
+			background-color: {AccentColor};
 			{block:ShowHeaderImage}background-image: url({HeaderImage});{/block:ShowHeaderImage}
 			background-position: center;
             background-size: fill; /* vs cover? */
             background-repeat: no-repeat;
             
-            {block:ShowAvatar}min-height: 64px;{/block:ShowAvatar} /*Make sure avatar has something to float on. @can you have a variable to track this number, for when padding comes into play?*/
+            {block:ShowAvatar}min-height: 84px;{/block:ShowAvatar} /*Make sure avatar has something to float on.*/
+            
             
             width: 98%;
             margin: 0% 1%;

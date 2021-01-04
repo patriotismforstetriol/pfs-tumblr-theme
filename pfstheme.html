@@ -84,6 +84,18 @@
 			width: 95%;
 			margin: 0% 1% 20px 4%;
 		}
+		input[type=text] {
+		    width: 50px;
+		    background-color: {color:Divider};
+		    border: none;
+		    padding: 0px 0px 0px 3px;
+		}
+		::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */font-weight: bold;}
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */font-weight: bold;}
+        ::-ms-input-placeholder { /* Microsoft Edge */font-weight: bold;}
+		input[type=text]:focus {
+		    width: auto;
+		}
 		.bodybar {
 			margin: 0 auto;
 		}
@@ -179,9 +191,8 @@
         <meta charset='UTF-8'>
         <!--User variables-->
         <meta name="color:Divider" content="#000099">
-        <meta name="if:ShowTime" content="0">
-        <meta name="if:RelatedPosts" content="0">
-        <meta name="if:OfferSearch" content="0">
+        <meta name="if:Show Time" content="0">
+
         
         <link rel="icon" href="{Favicon}">
         <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
@@ -200,7 +211,14 @@
 	    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
         {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
         {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
-	</ul></div>
+        <li><form action="/search" method="get">
+            <input type="text" name="q" placeholder="Search" value="{SearchQuery}"/>
+        </form></li>
+	</ul>
+	
+	</div>
+	
+	
 	
 	<!--The main body of the page-->
 	<div class="bodybar">

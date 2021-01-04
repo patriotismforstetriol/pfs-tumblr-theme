@@ -6,7 +6,7 @@
 	    *{ margin:0; padding:0; border-radius: 6px; }
 	    a {
             text-decoration: none;
-            color: black;
+            color: {select:Text Colour};
         }
         
 	    ul li {
@@ -26,7 +26,6 @@
 	    
 	    h1 { /*Used for: Blog Title*/
 	        font-family: {TitleFont};
-	        color: {TitleColor};
 	        font-weight: {TitleFontWeight};
 	        font-size: 3em;
 	    }
@@ -55,6 +54,7 @@
             background-color: {BackgroundColor};
             font-family: Arial, Helvetica, sans-serif;
         }
+        
             
             
 		.titlebar {
@@ -68,6 +68,8 @@
             
             width: 98%;
             margin: 0% 1%;
+            
+            color: {TitleColor};
 		}
 		.padding {
 		    width: 100%;
@@ -85,7 +87,7 @@
 			margin: 0% 1% 20px 4%;
 		}
 		input[type=text] {
-		    width: 50px;
+		    width: 49px; /*This neatly fits the word 'search'*/
 		    background-color: {color:Divider};
 		    border: none;
 		    padding: 0px 0px 0px 3px;
@@ -93,11 +95,12 @@
 		::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */font-weight: bold;}
         :-ms-input-placeholder { /* Internet Explorer 10-11 */font-weight: bold;}
         ::-ms-input-placeholder { /* Microsoft Edge */font-weight: bold;}
-		input[type=text]:focus {
+		input[type=text]:focus { /*So it expands when clicked*/
 		    width: auto;
 		}
 		.bodybar {
 			margin: 0 auto;
+			color: {select:Text Colour}; 
 		}
 		.bodybox {
 		    background-color: {AccentColor};
@@ -113,11 +116,13 @@
 		    padding: 0px;
 		}
 		.paginbar {
+		    color: {select:Text Colour}; 
 			width: 90%;
 			margin: 0px auto;
 			text-align: center; /*Center the page values*/
 		}
 		.credbar {
+		    color: {select:Text Colour}; 
 			background-color: {AccentColor};
 			
 			width: 50%;
@@ -192,7 +197,17 @@
         <!--User variables-->
         <meta name="color:Divider" content="#000099">
         <meta name="if:Show Time" content="0">
-
+        <meta name="select:Text Colour" content="#000000" title="Black">
+        <meta name="select:Text Colour" content="#747474" title="Grey">
+        <meta name="select:Text Colour" content="#e4e4e4" title="Light Grey">
+        <meta name="select:Use Default Visitors" content=1 title="Yes">
+        <meta name="select:Use Default Visitors" content=0 title="No">
+        <meta name="image:Custom Visitor 1" content="https://static.tumblr.com/es7fady/p9hqmcc5n/yaya1.png">
+        <meta name="image:Custom Visitor 2" content="https://static.tumblr.com/es7fady/ICcqmcc5k/yaya2.png">
+        <meta name="image:Custom Visitor 3" content="https://static.tumblr.com/es7fady/JCUqmcc5l/yaya3.png">
+        <meta name="image:Custom Visitor 4" content="">
+        <meta name="image:Custom Visitor 5" content="">
+        <!-- This theme is created by patriotismforstetriol.tumblr.com -->
         
         <link rel="icon" href="{Favicon}">
         <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
@@ -347,8 +362,8 @@
                     <h5>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
                     {block:IfShowTime}at {24HourWithZero}:{Minutes} UTC-5{/block:IfShowTime}
                 ‒{/block:Date}</h5></a></li>
-                <li>{LikeButton size="20"}</li>
-                <li>{ReblogButton size="20"}</li>
+                <li>{LikeButton color="grey"}</li>
+                <li>{ReblogButton color="grey"}</li>
                 {block:Submission}<li><a href="{SubmitterURL}"><h5>Submitted by: {Submitter}</h5></a></li>{/block:Submission}
                 {block:PinnedPostLabel}<li><h5>{PinnedPostLabel}</h5></li>{/block:PinnedPostLabel}
     	    </ul>
@@ -402,9 +417,19 @@
     
 	<div class="credbar"><h6>Theme by patriotismforstetriol</h6></div>
 	
+
 	<!--Cat swapper script-->
 	<script>
-	const images = ["https://static.tumblr.com/es7fady/p9hqmcc5n/yaya1.png", "https://static.tumblr.com/es7fady/ICcqmcc5k/yaya2.png", "https://static.tumblr.com/es7fady/JCUqmcc5l/yaya3.png"];
+	const emptyVisitor = "https://assets.tumblr.com/images/x.gif?v=1";
+    let images;
+    
+    if ({select:Use Default Visitors}) {
+        images = ["https://static.tumblr.com/es7fady/p9hqmcc5n/yaya1.png", "https://static.tumblr.com/es7fady/ICcqmcc5k/yaya2.png", "https://static.tumblr.com/es7fady/JCUqmcc5l/yaya3.png"];
+    } else {
+        images = ["{image:Custom Visitor 1}", "{image:Custom Visitor 2}", "{image:Custom Visitor 3}", "{image:Custom Visitor 4}", "{image:Custom Visitor 5}"];
+	    images = images.filter(v=> v!== emptyVisitor );
+    }
+
 	let i = Math.floor((Math.random() * images.length)); // the randomly chosen image
 	let po = Math.floor((Math.random() * 10) + 1).toString(); // the randomly chosen position on page
 	try {

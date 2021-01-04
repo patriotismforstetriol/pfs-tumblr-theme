@@ -1,405 +1,442 @@
-<!DOCTYPE html>
-
-
-<html lang='en'>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html>
     <head>
-        <style type="text/css">
-            /*To add: cats*/
+	<style type="text/css">
+	    *{ margin:0; padding:0; border-radius: 6px; }
+	    a {
+            text-decoration: none;
+            color: {select:Text Colour};
+        }
         
-            h1 { /*Puts title next to avatar*/
-                display: inline;
-                position: relative;
-                bottom: 15px;
-                padding: 0px 20px;
-                
-            }
-            .headerbox {
-                margin: 20px 30px 0px 30px;
-                padding: 30px 30px 1px 30px;
-                border-radius: 6px;
-                
-                /*background-image: url({HeaderImage});*/
-                background-color: {AccentColor};
-                
-                background-position: center;
-                background-size: cover;
-                background-repeat: no-repeat;/*or can use contain + norepeat*/
-                
-                
-            }
-            .cont {
-                padding: 10px;
-            }
-            header a {
-                text-decoration: none;
-                color: {TitleColor};
-            }
-            .navigation ul {
-                /*vertical-align: top*/
-                position: relative;
-                left: 40px;
-                bottom: 7px;
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-            .navigation li { 
-                background-color: {AccentColor};
-                float: left;
-                margin: 1% 1%;
-                border-radius: 0px 0px 4px 4px;
-                /*outline-style: solid;
-                outline-width: thin;*/
-            }
-            .navigation li a {
-                display: block;
-                text-align: center;
-                padding: 10px 10px;
-                text-decoration: none;
-            }
-            body {
-                background-color: {BackgroundColor};
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            h3 {
-                color: {TitleColor};
-            }
-            .post {
-                background-color: {AccentColor};
-                width: 80%;
-                margin: 20px auto;
-                padding: 15px 15px;
-                border-radius: 6px;
-            }
-            /*.page {
-                background-color: {AccentColor};
-                width: 80%;
-                margin: 20px auto;
-                padding: 15px 15px;
-                border-radius: 6px;
-            }*/
-            .separator {
-                background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
-                height: 5px;
-            }
-            .infofooter {
-                list-style: none;
-                padding: 0px 0px 1px 0px;
-            }
-            .infofooter li {
-                float: right;
-                padding: 0px 10px 0px 0px;
-            }
-            .post a {
-                text-decoration: none;
-    	        color: #000;
-            }
-            .perm a { /*unecessary, was just for a test*/
-                text-decoration: none;
-            }
-            .singleimg {
-                width: 100%; /*So it fills the post box*/
-            }
-            .photoset ul {
-                list-style: none;
-                border: 0;
-                padding: 0;
-            }
-            .plink {
-                background-color: {BackgroundColor};
-                padding: 40px;
-                border: 10px;
-            }
-            .chat li {
-                list-style: none;
-            }
-            .question {
-                background-color: {BackgroundColor};
-                padding: 40px;
-                border: 10px;                
-            }
-            .namelite {
-                
-            }
-            .namelite a {
-            }
-            .name a {
-                text-decoration: underline;
-                color: #444;
-            }
-            .source {
-                margin-left: 40px;
-            }
-            .pagenum {
-                margin-left: 40%;
-            }
-            .pagenum ul {
-                /*vertical-align: top*/
-                /*position: relative;
-                left: 40%;
-                bottom: 6px;
-                list-style: none;
-                margin: auto;
-                padding: 0;*/
-            }
-            .pagenum li { 
-                background-color: {AccentColor};
-                float: left;
-                height: 20px;
-                padding: 5px;
-                list-style: none;
-                /*outline-style: solid;
-                outline-width: thin;*/
-            }
-            .pagenum li a {
-                /*display: block;*/
-                text-align: center;
-                padding: 10px 10px;
-                text-decoration: none;
-                color: {TitleColor};
-            }
-            .credfooter {
-                background-color: {AccentColor};
-                width: 50%;
-                position: center;
-                margin-left: 25%;
-                text-align: center;
-                border-radius: 6px 6px 0px 0px;
-                font-size: 8px;
-                color: #333;
-            }
-
-
-                        @media only screen and (min-width: 768px) {
-                .headerbox {
-                    margin: auto;
-                    width: 90%;
-                }
-                .navigation ul {
-                    position: relative;
-                    left: 150px;
-                    bottom: 12px;
-                }
-                .post {
-                    width: 700px;
-                }
-            }
-        </style>
+	    ul li {
+	        display: inline-block;
+	        /*margin: 0% 1%; Horizontal spacing compresses as page narrows*/
+	        background-color: {AccentColor}; 
+	        padding: 5px;
+		    margin: 0px 3px 3px 3px; /*To keep them separate when we have multiple lines*/
+		    border-radius: 0px 0px 4px 4px; /*To round lower two corners*/
+	    }
+	    li a:hover { /*Hover colour of links*/
+	        color: {color:Divider};
+	    }
+	    .hover:hover {
+	        color: {color:Divider};
+	    }
+	    
+	    h1 { /*Used for: Blog Title*/
+	        font-family: {TitleFont};
+	        font-weight: {TitleFontWeight};
+	        font-size: 3em;
+	    }
+	    h2 { /*Used for: Blog description*/
+	       font-size: 1.2em;
+	    }
+	    h3 { /*Used for: Post title/quote/link title*/}
+	    h4 { /*Used for: usernames. Explicitly defined because we need to copy this over manually for permalink page tags*/
+	        font-size: 1em;
+            margin-bottom: 1.33em;
+            font-weight: bold;
+	    }
+	    h5 { /*Used for: Chat labels, the notes/date footer of each post*/
+		    display: inline;
+		}
+		h6 { /*Used for: Theme credit.*/ }
+		.tag {
+            color: {TitleColor};
+            font-size: 14px;
+            font-style: normal;
+        }
+        .tag:hover {
+            color: {color:Divider};
+        }
+	    body {
+            background-color: {BackgroundColor};
+            font-family: Arial, Helvetica, sans-serif;
+        }
         
-    <meta charset='UTF-8'>
-    <link rel="icon" href="{Favicon}">
-        <title>{Title}</title>
-        <meta name="viewport" content="width=device-width" />
-        <meta name="color:Divider" content="#000000">
-        <!--Thanks http://themesbyeris.tumblr.com/tutorial02 for the above-->
-    </head>
-    <body>
-        <header>
-        <a href="{BlogURL}" id="bloglink"><div class="headerbox">
-            <img src="{PortraitURL-64}">
-            <h1>{Title}</h1>
-            <!--<h2>{Description}</h2>-->
-        </div></a><div class="navigation">
-            <ul>
-                {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-                {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
-                {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
-            </ul>
-        </div>
-        </header>
-        
-        <br>
-        <br>
-        {block:Pages} <!-- still shows up notes, so not quite working yet-->
-        {/block:Pages}
-        
-        {block:Posts}
-            <div class="post">
             
-            {block:Text}
-	        	{block:NotReblog}<div class="cont">
-                    <a href="{Permalink}" class="perm">
-                    {block:Title}
-		   		        <h3><a class="perm">{Title}</a></h3>
-	        	    {/block:Title}
-	        	    {Body}</a></div>{/block:NotReblog}
-	        	{block:RebloggedFrom}
-	        	    <div class="cont">
-                    <a href="{Permalink}" class="perm">
-                    {block:Title}
-		   		        <h3>{Title}</h3>
-	        	    {/block:Title}
-	        	    <div class="name">{Body}</div></a></div>
-	        	{/block:RebloggedFrom}
-            {/block:Text}
+            
+		.titlebar {
+			/*Header image management. */
+			{block:ShowHeaderImage}background-image: url({HeaderImage});{/block:ShowHeaderImage}
+			background-position: center;
+            background-size: fill; /* vs cover? */
+            background-repeat: no-repeat;
+            
+            {block:ShowAvatar}min-height: 64px;{/block:ShowAvatar} /*Make sure avatar has something to float on. @can you have a variable to track this number, for when padding comes into play?*/
+            
+            width: 98%;
+            margin: 0% 1%;
+            
+            color: {TitleColor};
+		}
+		.padding {
+		    width: 100%;
+		    padding: 10px;
+		}
+		.titlebar img {
+		    float: left;
+		    margin: 0px 15px 0px 0px; /*Pad the RHS only*/
+		}
+		.circle img { /* For avatar shape */
+		    border-radius: 50%;
+		}
+		.navigbar {
+			width: 95%;
+			margin: 0% 1% 20px 4%;
+		}
+		input[type=text] {
+		    width: 49px; /*This neatly fits the word 'search'*/
+		    background-color: {color:Divider};
+		    border: none;
+		    padding: 0px 0px 0px 3px;
+		}
+		::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */font-weight: bold;}
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */font-weight: bold;}
+        ::-ms-input-placeholder { /* Microsoft Edge */font-weight: bold;}
+		input[type=text]:focus { /*So it expands when clicked*/
+		    width: auto;
+		}
+		.bodybar {
+			margin: 0 auto;
+			color: {select:Text Colour}; 
+		}
+		.bodybox {
+		    background-color: {AccentColor};
+		    padding: 20px 20px 0px 20px;
+		    
+		}
+		.bodybox ul {
+		    display: inline-block;
+		    width: 100%;
+		}
+		.bodybox li {
+		    float: right;
+		    padding: 0px;
+		}
+		.paginbar {
+		    color: {select:Text Colour}; 
+			width: 90%;
+			margin: 0px auto;
+			text-align: center; /*Center the page values*/
+		}
+		.credbar {
+		    color: {select:Text Colour}; 
+			background-color: {AccentColor};
+			
+			width: 50%;
+			margin: 5px auto; /*Center & get some space on page*/
+			text-align: center;
+		}
+		
+		.cat {
+	        width: 100%;
+	        border-radius: 0px;
+	        margin: 10px 0px; /*Acts as separator between posts*/
+		}
+		.cat img {
+		    width: 100%;
+		    display:block;
+		}
+		.chat {
+		    list-style: none; /*Get rid of the numbering*/
+		    margin: 0px 10px;
+		}
+		.chat li {
+		    float: none;
+		    padding: 0px 5px;
+		}
+		
+		.subcontent {
+		    margin: 10px;
+		    padding: 30px;
+		    border: 2px solid;
+		    border-color: {color:Divider};
+		}
+		.notes {
+		    background-color: {AccentColor};
+
+		    padding: 10px;
+		    list-style: none;
+		}
+		.notes img {
+		    margin: 0px 10px -4px 0px;
+		}
+		.notes a { 
+    		font-size: 1em;
+            margin-bottom: 1.33em;
+            font-weight: bold;
+		}
+		
+		.separator {
+            background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
+            height: 5px;
+            margin: 5px 0px;
+        }
+        .miniseparator {
+            background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
+            height: 2px;
+            margin: 5px 0px;
+        }
         
+        @media only screen and (min-width: 720px) {
+            .bodybar {
+                width: 700px;
+            }
+        }
+        @media only screen and (max-width: 719px) {
+            .bodybar {
+                width: 90%;
+            }
+        }
+		{CustomCSS}
+    </style>
+    
+        <meta charset='UTF-8'>
+        <!--User variables-->
+        <meta name="color:Divider" content="#000099">
+        <meta name="if:Show Time" content="0">
+        <meta name="select:Text Colour" content="#000000" title="Black">
+        <meta name="select:Text Colour" content="#747474" title="Grey">
+        <meta name="select:Text Colour" content="#e4e4e4" title="Light Grey">
+        <meta name="select:Use Default Visitors" content=1 title="Yes">
+        <meta name="select:Use Default Visitors" content=0 title="No">
+        <meta name="image:Custom Visitor 1" content="https://static.tumblr.com/es7fady/p9hqmcc5n/yaya1.png">
+        <meta name="image:Custom Visitor 2" content="https://static.tumblr.com/es7fady/ICcqmcc5k/yaya2.png">
+        <meta name="image:Custom Visitor 3" content="https://static.tumblr.com/es7fady/JCUqmcc5l/yaya3.png">
+        <meta name="image:Custom Visitor 4" content="">
+        <meta name="image:Custom Visitor 5" content="">
+        <!-- This theme is created by patriotismforstetriol.tumblr.com -->
+        
+        <link rel="icon" href="{Favicon}">
+        <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+    </head>
+	
+    <body>
+    <!--The header bar-->
+    <a href="{BlogURL}" id="bloglink"><div class="titlebar"><div class="padding">
+        {block:ShowAvatar}<span class="{AvatarShape}"><img src="{PortraitURL-64}"></span>{/block:ShowAvatar}
+        <div>{block:ShowTitle}<h1>{Title}</h1>{/block:ShowTitle}
+        {block:ShowDescription}<h2>{Description}</h2>{/block:ShowDescription}</div></div>
+    </div></a>
+
+    <!--The navigation menu-->
+	<div class="navigbar"><ul>
+	    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+        {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
+        {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
+        <li><form action="/search" method="get">
+            <input type="text" name="q" placeholder="Search" value="{SearchQuery}"/>
+        </form></li>
+	</ul>
+	
+	</div>
+	
+	
+	
+	<!--The main body of the page-->
+	<div class="bodybar">
+	    {block:Posts}<div class=bodybox>
+    	    
+    	    <!--The post body -->
+    	    {block:Text}
+                    <a href="{Permalink}">{block:Title}<h3>{Title}</h3>{/block:Title}</a>
+                    {block:NotReblog}{Body}{/block:NotReblog}
+	                {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	                {/block:Reblogs}{/block:RebloggedFrom}
+            {/block:Text}
+            
             {block:Photo}
-            {LinkOpenTag}{block:HighRes} {/block:HighRes}
-                <img class="singleimg cont" src="{PhotoURL-500}">{LinkCloseTag}
-			    {block:Caption}
-			        <a href="{Permalink}" class="perm"><div class="namelite">{Caption}</div></a>
-			    {/block:Caption}
+                {block:HighRes}<a href="{PhotoURL-HighRes}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width=100%></a>{/block:HighRes}
+			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Photo}
             
             {block:Panorama}
-                <li class="cont panorama">
-                        {LinkOpenTag}
-                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
-                        {LinkCloseTag}{block:Caption}
-                            <div class="caption" class="perm">{Caption}</div>
-                        {/block:Caption}
-                    </li>
-                This post type (panorama) has not been tested and may not display.
+                <a href="{PhotoURL-Panorama}"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width=100%></a>
+			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Panorama}
+            
             {block:Photoset}
-                
-                <div class="photoset">
-                <ul>
-                <li>
-                        {block:Photos}
-                        <a href="{PhotoURL-HighRes}">{block:HighRes} {/block:HighRes}
-                        <img class="singleimg" src="{PhotoURL-500}"></a>
-                        {/block:Photos}
-                        {block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                </li></ul></div>
-                
+                {Photoset}
+                {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Photoset}
+            
             {block:Quote}
-                <div class="quote">
-                        <a href="{Permalink}" class="perm"><h3><i>“{Quote}”</i></h3>
-
-                        {block:Source}
-                            <div class="source">‒ {Source}</div>
-                        {/block:Source}
-                        </a>
-                        <br>
-                </div>
+                <h3><i>“{Quote}”</i></h3>
+                {block:Source}‒ {Source}{/block:Source}
             {/block:Quote}
+            
             {block:Link}
-                <div class="link">
-                <div class="plink">
-                <a href="{URL}" class="link" {Target}>
-                    {block:Thumbnail}
-                    <img src="{Thumbnail}">
-                    {/block:Thumbnail}
-                    {block:Excerpt}{Excerpt}{/block:Excerpt}
-                    {block:Author}
-                    <div class="link-author">{Author}</div>
-                    {/block:Author}
-                    
+                <div class="subcontent"><a href="{URL}" {Target}>
                     <h3>{Name}</h3>
-                            
-                        </a></div> <a href="{Permalink}" class="perm">
-
-                        {block:Description}
-                            <div class="description">{Description}</div>
-                        {/block:Description}
-                    </a></div>
+                    {block:Excerpt}{Excerpt}{/block:Excerpt}
+                    {block:Author}{Author}{/block:Author}</a></div>
+                    
+                {block:NotReblog}{block:Description}{Description}{/block:Description}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Link}
-            {block:Chat}
-                <a href="{Permalink}"><div class="chat">
-                        {block:Title}
-                            <h3><a href="{Permalink}" class="perm">{Title}</a></h3>
-                        {/block:Title}
-
-                        <ul class="chat">
-                            {block:Lines}
-                                <li class="{Alt} user_{UserNumber}">
-                                    {block:Label}
-                                        <b><span class="label">{Label}</span></b>
-                                    {/block:Label}{Line}
-                                </li>
-                            {/block:Lines}
-                        </ul>
-                    </div></a>
+    	    
+    	   {block:Chat}
+                {block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}
+                <ol class="chat">{block:Lines}<li>
+                    {block:Label}<h5>{Label}</h5>{/block:Label}
+                    {Line}</li>
+                {/block:Lines}</ol>
             {/block:Chat}
+            
             {block:Video}
-                <div class="cont video">
-                        {Video-500}
-                        <a href="{Permalink}" class="perm">{block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}</a>
-                    </div>
+                {Video-500}
+                {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Video}
+            
             {block:Audio}
-                <li class="cont audio">
-                        {AudioEmbed}{block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                    </li>
-                This post type (audio) has not been tested and may not display.
+                {AudioEmbed}
+                {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Audio}
+            
             {block:Answer}
-                <div class="cont ans">
-                <div class="question">
-                <div class="name">{Asker}: </div>
-                {Question}</div>
-                
-                <div class="cont">{block:Answerer}
-                <div class="name">{Answerer}</div>
-                                {Answer}
-                {/block:Answerer}</div>
-
-                
-                <div class="name"></div>
-                <a href="{Permalink}">{Replies}</a>
-            </div>
+                <div class="subcontent"><h4>{Asker}: </h4>{Question}</div>
+                {block:Answerer}<h4>{Answerer}: </h4>{Answer}{/block:Answerer}
+                {block:NotReblog}{Replies}{/block:NotReblog}
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                    <li><img src="{PortraitURL-24}"></li>
+	                    <li><h4>{Username}</h4></li>
+	                </ul></a>
+	                {Body}
+	            {/block:Reblogs}{/block:RebloggedFrom}
             {/block:Answer}
-            
-            <div class="postfooter">
-                <div class="separator"></div>
-
-            {block:HasTags}
-                {block:Tags}
-                   <i><a href="{TagURL}" class="perm">#{Tag}  </a></i>
-                {block:Tags}
+    	    
+    	    {block:More}<a class="hover" href="{Permalink}">&#187; Read more &#171;</a>{/block:More}
+    	    
+    	    <!--The start of the post footer -->
+    	    <div class="separator"></div>
+    	    
+    	    {block:HasTags}
+                {block:Tags}<i><a href="{TagURL}" class="tag">#{Tag}</a>  </i>{block:Tags}
             {/block:HasTags}
-            
-                <div class="infofooter">
-                <ul class="infofooter">
-                    <li><a href="{Permalink}">‒ {NoteCount} notes ‒</a></li>
-            
-                    <li>{block:Date}
-                    ‒ {Year} {ShortMonth} {DayOfMonth}
-                    {/block:Date} </li>           
-            
-                    <li>{LikeButton}</li>
-                    <li>{ReblogButton}</li>
-                </ul>
-                </div>
-            </div>
-            </div>
-            
-        {/block:Posts}
-        
-        {block:TagPage}
-        {/block:TagPage}
-        
-        {block:PostNotes}<div class="post">
-            <div class="name">{PostNotes}</div>
-            <!--This is so ugly--></div>
-        {/block:PostNotes}
-        
-        {block:Pagination}<div class="pagenum"
-        <ul><li>
-            {block:PreviousPage}
-                <a href="{PreviousPage}">&#171; Previous</a>
-            {/block:PreviousPage}</li>
+    	    
+    	    <ul>
+    	        {block:IndexPage}<li><a href="{Permalink}"><h5>‒ {NoteCount} notes ‒</h5></a></li>{/block:IndexPage}
+    	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}"><h5>‒ {NoteCount} notes ‒</h5></a></li>{/block:NoteCount}{/block:PermalinkPage}
+                <li><a href="{BlogURL}day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/">
+                    <h5>{block:Date}‒ {Year} {ShortMonth} {DayOfMonth} 
+                    {block:IfShowTime}at {24HourWithZero}:{Minutes} UTC-5{/block:IfShowTime}
+                ‒{/block:Date}</h5></a></li>
+                <li>{LikeButton color="grey"}</li>
+                <li>{ReblogButton color="grey"}</li>
+                {block:Submission}<li><a href="{SubmitterURL}"><h5>Submitted by: {Submitter}</h5></a></li>{/block:Submission}
+                {block:PinnedPostLabel}<li><h5>{PinnedPostLabel}</h5></li>{/block:PinnedPostLabel}
+    	    </ul>
+	        </div>
+	    
+	        <!-- The cat-->
+	        {block:Post1}<div class="cat"><img id="yaya1"></div>{/block:Post1}
+	        {block:Post2}<div class="cat"><img id="yaya2"></div>{/block:Post2}
+	        {block:Post3}<div class="cat"><img id="yaya3"></div>{/block:Post3}
+	        {block:Post4}<div class="cat"><img id="yaya4"></div>{/block:Post4}
+	        {block:Post5}<div class="cat"><img id="yaya5"></div>{/block:Post5}
+	        {block:Post6}<div class="cat"><img id="yaya6"></div>{/block:Post6}
+	        {block:Post7}<div class="cat"><img id="yaya7"></div>{/block:Post7}
+	        {block:Post8}<div class="cat"><img id="yaya8"></div>{/block:Post8}
+	        {block:Post9}<div class="cat"><img id="yaya9"></div>{/block:Post9}
+	        {block:Post10}<div class="cat"><img id="yaya10"></div>{/block:Post10}
+	    
+	        <!-- Notes on permalink posts-->
+	        {block:PermalinkPage}<div class="notes">{PostNotes-16}</div>{/block:PermalinkPage}
+	        
+	    {/block:Posts}
+	    
+	</div>
+	
+	<!--The pagination features-->
+	<div class="paginbar">
+	    {block:Pagination}<ul>
+	        <!--Regular blog pagination-->
+	        {block:PreviousPage}<li><a href="{PreviousPage}">&#171; Previous</a></li>{/block:PreviousPage}
             {block:JumpPagination length="7"}
                 {block:CurrentPage}<li><span class="current_page"><b>{PageNumber} / {TotalPages}</b></span></li>{/block:CurrentPage}
-                {block:JumpPage}<li>
-                    <a class="jump_page" href="{URL}">{PageNumber}</a></li>
-                {/block:JumpPage}{/block:JumpPagination}
-            <li>{block:NextPage}
-                <a href="{NextPage}">Next &#187;</a> 
-            {/block:NextPage}</li>
-        </ul></div>{/block:Pagination}
+                {block:JumpPage}<li><a class="jump_page" href="{URL}">{PageNumber}</a></li>{/block:JumpPage}
+            {/block:JumpPagination}
+            {block:NextPage}<li><a href="{NextPage}">Next &#187;</a></li>{/block:NextPage}
+        </ul>{/block:Pagination}
+            
+        <!--Permalink navigation-->
+        {block:PermalinkPagination}<ul>
+            {block:PreviousPost}<li><a href="{PreviousPost}">&#171; Previous post</a></li>{/block:PreviousPost}
+             
+            {block:NextPost}<li><a href="{NextPost}">Next post &#187;</a></li>{/block:NextPost}
+        </ul>{/block:PermalinkPagination}
+        
+        <!--Day page navigation-->
+        {block:DayPagination}<ul>
+            {block:PreviousDayPage}<li><a href="{PreviousDayPage}">&#171; Previous day</a></li>{/block:PreviousDayPage}
+            {block:NextDayPage}<li><a href="{NextDayPage}">Next day &#187;</a></li>{/block:NextDayPage}
+        </ul>{/block:DayPagination}
+            
+    </div>
+    
+	<div class="credbar"><h6>Theme by patriotismforstetriol</h6></div>
+	
 
+	<!--Cat swapper script-->
+	<script>
+	const emptyVisitor = "https://assets.tumblr.com/images/x.gif?v=1";
+    let images;
+    
+    if ({select:Use Default Visitors}) {
+        images = ["https://static.tumblr.com/es7fady/p9hqmcc5n/yaya1.png", "https://static.tumblr.com/es7fady/ICcqmcc5k/yaya2.png", "https://static.tumblr.com/es7fady/JCUqmcc5l/yaya3.png"];
+    } else {
+        images = ["{image:Custom Visitor 1}", "{image:Custom Visitor 2}", "{image:Custom Visitor 3}", "{image:Custom Visitor 4}", "{image:Custom Visitor 5}"];
+	    images = images.filter(v=> v!== emptyVisitor );
+    }
 
-        <div class="credfooter"> 
-            Theme also by patriotismforstetriol
-        </div>
+	let i = Math.floor((Math.random() * images.length)); // the randomly chosen image
+	let po = Math.floor((Math.random() * 10) + 1).toString(); // the randomly chosen position on page
+	try {
+	    let yaya = document.getElementById("yaya" + po);
+	    yaya.src = images[i]; // make the image visible.
+	    yaya.style.margin = "-10px 0px"; // it touches the adjacent posts
+	} catch (TypeError) { }; // you were unlucky with po not being on the page and don't get a cat
+	</script>
     </body>
 </html>

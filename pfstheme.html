@@ -8,10 +8,19 @@
             text-decoration: none;
             color: {select:Text Colour};
         }
+        ol {
+             padding: 0px 0px 0px 25px;
+        }
+        ul { /*overwritten in non-user text*/ 
+             padding: 0px 0px 0px 25px;
+        }
         
-	    ul li {
-	        display: inline-block;
-	        /*margin: 0% 1%; Horizontal spacing compresses as page narrows*/
+        .formatul {
+            display: inline-block;
+            padding: 0px;
+        }
+	    .formatul li {
+		    display: inline-block;
 	        background-color: {AccentColor}; 
 	        padding: 5px;
 		    margin: 0px 3px 3px 3px; /*To keep them separate when we have multiple lines*/
@@ -96,6 +105,7 @@
 			width: 95%;
 			margin: 0% 1% 20px 4%;
 		}
+
 		input[type=text] {
 		    width: 49px; /*This neatly fits the word 'search'*/
 		    background-color: {color:Divider};
@@ -117,11 +127,10 @@
 		    padding: 20px 20px 0px 20px;
 		    
 		}
-		.bodybox ul {
-		    display: inline-block;
-		    width: 100%;
-		}
-		.bodybox li {
+        .bodyboxul {
+            width: 100%;
+        }
+		.bodyboxul li {
 		    float: right;
 		    padding: 0px;
 		}
@@ -232,7 +241,7 @@
     </div></a>
 
     <!--The navigation menu-->
-	<div class="navigbar"><ul>
+	<div class="navigbar"><ul class="formatul">
 	    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
         {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
         {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
@@ -253,7 +262,7 @@
     	    {block:Text}
                     <a href="{Permalink}">{block:Title}<h3>{Title}</h3>{/block:Title}</a>
                     {block:NotReblog}{Body}{/block:NotReblog}
-	                {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+	                {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -264,7 +273,7 @@
             {block:Photo}
                 {block:HighRes}<a href="{PhotoURL-HighRes}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width=100%></a>{/block:HighRes}
 			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -275,7 +284,7 @@
             {block:Panorama}
                 <a href="{PhotoURL-Panorama}"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width=100%></a>
 			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -286,7 +295,7 @@
             {block:Photoset}
                 {Photoset}
                 {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -306,7 +315,7 @@
                     {block:Author}{Author}{/block:Author}</a></div>
                     
                 {block:NotReblog}{block:Description}{Description}{/block:Description}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -325,7 +334,7 @@
             {block:Video}
                 {Video-500}
                 {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -336,7 +345,7 @@
             {block:Audio}
                 {AudioEmbed}
                 {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -348,7 +357,7 @@
                 <div class="subcontent"><h4>{Asker}: </h4>{Question}</div>
                 {block:Answerer}<h4>{Answerer}: </h4>{Answer}{/block:Answerer}
                 {block:NotReblog}{Replies}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul>
+			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
@@ -365,7 +374,7 @@
                 {block:Tags}<i><a href="{TagURL}" class="tag">#{Tag}</a>  </i>{block:Tags}
             {/block:HasTags}
     	    
-    	    <ul>
+    	    <ul class="formatul bodyboxul">
     	        {block:IndexPage}<li><a href="{Permalink}"><h5>‒ {NoteCount} notes ‒</h5></a></li>{/block:IndexPage}
     	        {block:PermalinkPage}{block:NoteCount}<li><a href="{Permalink}"><h5>‒ {NoteCount} notes ‒</h5></a></li>{/block:NoteCount}{/block:PermalinkPage}
                 <li><a href="{BlogURL}day/{Year}/{MonthNumberWithZero}/{DayOfMonthWithZero}/">
@@ -400,7 +409,7 @@
 	
 	<!--The pagination features-->
 	<div class="paginbar">
-	    {block:Pagination}<ul>
+	    {block:Pagination}<ul class="formatul">
 	        <!--Regular blog pagination-->
 	        {block:PreviousPage}<li><a href="{PreviousPage}">&#171; Previous</a></li>{/block:PreviousPage}
             {block:JumpPagination length="7"}
@@ -411,14 +420,14 @@
         </ul>{/block:Pagination}
             
         <!--Permalink navigation-->
-        {block:PermalinkPagination}<ul>
+        {block:PermalinkPagination}<ul class="formatul">
             {block:PreviousPost}<li><a href="{PreviousPost}">&#171; Previous post</a></li>{/block:PreviousPost}
              
             {block:NextPost}<li><a href="{NextPost}">Next post &#187;</a></li>{/block:NextPost}
         </ul>{/block:PermalinkPagination}
         
         <!--Day page navigation-->
-        {block:DayPagination}<ul>
+        {block:DayPagination}<ul class="formatul">
             {block:PreviousDayPage}<li><a href="{PreviousDayPage}">&#171; Previous day</a></li>{/block:PreviousDayPage}
             {block:NextDayPage}<li><a href="{NextDayPage}">Next day &#187;</a></li>{/block:NextDayPage}
         </ul>{/block:DayPagination}

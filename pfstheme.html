@@ -129,6 +129,10 @@
 		    padding: 20px 20px 0px 20px;
 		    
 		}
+		.posthead {
+		    background-color: #aaffaa;
+		    margin-bottom: 1em;
+		}
 		.intext img {
 		    margin: 0px 20px;
 		}
@@ -279,6 +283,39 @@
 	<!--The main body of the page-->
 	<div class="bodybar">
 	    {block:Posts}<div class=bodybox>
+    	    
+    	    <!-- Post source declaration -->
+    	    <div class="posthead">
+    	        {block:NotReblog}
+    	        <ul class="usersul">
+                    <li><h4>Original post</h4></li>
+                </ul>
+    	        {/block:NotReblog}
+    	        {block:RebloggedFrom}
+    	        <a href="{ReblogRootURL}"><ul class="usersul">
+                    <li><h4>Reblog, original author: </h4></li>
+	                <li><img src="{ReblogRootPortraitURL-24}"></li>
+	                <li><h4>{ReblogRootName}</h4></li>
+                </ul></a>
+    	        <a href="{ReblogParentURL}"><ul class="usersul">
+                    <li><h4>Reblogged via: </h4></li>
+	                <li><img src="{ReblogParentPortraitURL-24}"></li>
+	                <li><h4>{ReblogParentName}</h4></li>
+                </ul></a>
+    	        {/block:RebloggedFrom}
+    	        {block:ContentSource}<a href="{SourceURL}"><ul class="usersul">
+    	            <li><h4>Source: </h4></li>
+                    <li>{block:SourceLogo}
+                    <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                    {/block:SourceLogo}</li>
+                    <li><h4>{SourceTitle}</h4></li>
+                </ul></a>{/block:ContentSource}
+                {block:Submission}<a href="{SubmitterURL}"><ul class="usersul">
+                    <li><h4>Submitted by: </h4></li>
+	                <li><img src="{SubmitterPortraitURL-24}"></li>
+	                <li><h4>{Submitter}</h4></li>
+	             </ul></a>{/block:Submission}
+    	    </div>
     	    
     	    <!--The post body -->
     	    {block:Text}

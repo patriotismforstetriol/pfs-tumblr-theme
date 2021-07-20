@@ -263,7 +263,10 @@
 	<div class="navigbar"><ul class="formatul">
 	    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
         {block:AskEnabled}<li><a href="{BlogURL}ask">{AskLabel}</a></li>{/block:AskEnabled}
-        {block:SubmissionEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionEnabled}
+        {block:SubmissionsEnabled}<li><a href="{BlogURL}submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+        <li><a href="{BlogURL}archive">Archive</a></li>
+        {block:Likes}<li><a href="https://www.tumblr.com/liked/by/{Name}">Likes</a></li>{/block:Likes}
+        {block:ShareFollowing}<li><a href="{BlogURL}following">Following</a></li>{/block:ShareFollowing}
         <li><form action="/search" method="get">
             <input type="text" name="q" placeholder="Search" value="{SearchQuery}"/>
         </form></li>

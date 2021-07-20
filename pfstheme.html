@@ -52,7 +52,7 @@
 	    h3 { /*Used for: Post title/quote/link title*/}
 	    h4 { /*Used for: usernames. Explicitly defined because we need to copy this over manually for permalink page tags*/
 	        font-size: 1em;
-            margin-bottom: 1.33em;
+            /*margin-bottom: 1.33em;*/
             font-weight: bold;
 	    }
 	    h5 { /*Used for: Chat labels, the notes/date footer of each post*/
@@ -108,8 +108,7 @@
 
 		input[type=text] {
 		    width: 49px; /*This neatly fits the word 'search'*/
-		    background-color: {color:Divider};
-		    border: none;
+		    border-color: {color:Divider};
 		    padding: 0px 0px 0px 3px;
 		}
 		::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */font-weight: bold;}
@@ -126,6 +125,20 @@
 		    background-color: {AccentColor};
 		    padding: 20px 20px 0px 20px;
 		    
+		}
+		.usersul {
+            padding: 0px;
+        }
+	    .usersul li {
+	        vertical-align: top;
+		    display: inline-block;
+		    min-height: 24px;
+		}
+		.usersul img {
+		    padding: 5px 5px;
+		}
+		.usersul h4 {
+		    padding: 8px 5px 5px 5px;
 		}
         .bodyboxul {
             width: 100%;
@@ -195,7 +208,7 @@
         }
         .miniseparator {
             background-image: linear-gradient(to right, {color:Divider}, {AccentColor});
-            height: 2px;
+            height: 3px;
             margin: 5px 0px;
         }
         
@@ -262,45 +275,49 @@
     	    {block:Text}
                     <a href="{Permalink}">{block:Title}<h3>{Title}</h3>{/block:Title}</a>
                     {block:NotReblog}{Body}{/block:NotReblog}
-	                {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+                    {block:RebloggedFrom}{/block:RebloggedFrom}
+	                {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	                {/block:Reblogs}{/block:RebloggedFrom}
+	                {/block:Reblogs}
             {/block:Text}
             
             {block:Photo}
                 {block:HighRes}<a href="{PhotoURL-HighRes}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width=100%></a>{/block:HighRes}
 			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Photo}
             
             {block:Panorama}
                 <a href="{PhotoURL-Panorama}"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width=100%></a>
 			    {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Panorama}
             
             {block:Photoset}
                 {Photoset}
                 {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Photoset}
             
             {block:Quote}
@@ -315,12 +332,13 @@
                     {block:Author}{Author}{/block:Author}</a></div>
                     
                 {block:NotReblog}{block:Description}{Description}{/block:Description}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Link}
     	    
     	   {block:Chat}
@@ -334,35 +352,38 @@
             {block:Video}
                 {Video-500}
                 {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Video}
             
             {block:Audio}
                 {AudioEmbed}
                 {block:NotReblog}{block:Caption}{Caption}{/block:Caption}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Audio}
             
             {block:Answer}
                 <div class="subcontent"><h4>{Asker}: </h4>{Question}</div>
                 {block:Answerer}<h4>{Answerer}: </h4>{Answer}{/block:Answerer}
                 {block:NotReblog}{Replies}{/block:NotReblog}
-			    {block:RebloggedFrom}{block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
+			    {block:RebloggedFrom}{/block:RebloggedFrom}
+			    {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="formatul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
 	                {Body}
-	            {/block:Reblogs}{/block:RebloggedFrom}
+	            {/block:Reblogs}
             {/block:Answer}
     	    
     	    {block:More}<a class="hover" href="{Permalink}">&#187; Read more &#171;</a>{/block:More}

@@ -252,6 +252,10 @@
         <meta name="image:Custom Visitor 3" content="https://static.tumblr.com/es7fady/JCUqmcc5l/yaya3.png">
         <meta name="image:Custom Visitor 4" content="">
         <meta name="image:Custom Visitor 5" content="">
+        <meta name="text:Original Post Label" content="Blog original"/>
+        <meta name="text:Reblog Source Label" content="Reblog source:"/>
+        <meta name="text:Reblog Via Label" content="Reblogged via"/>
+        <meta name="text:Submission Label" content="Submitted by"/>
         <!-- This theme is created by patriotismforstetriol.tumblr.com -->
         
         <link rel="icon" href="{Favicon}">
@@ -291,17 +295,17 @@
     	    <div class="posthead">
     	        {block:NotReblog}
     	        <ul class="usersul">
-                    <li><h4>Original post</h4></li>
+                    <li><h4>{text:Original Post Label}</h4></li>
                 </ul>
     	        {/block:NotReblog}
     	        {block:RebloggedFrom}
     	        <a href="{ReblogRootURL}"><ul class="usersul">
-                    <li><h4>Reblog, original author: </h4></li>
+                    <li><h4>{text:Reblog Source Label}:  </h4></li>
 	                <li><img src="{ReblogRootPortraitURL-24}"></li>
 	                <li><h4>{ReblogRootName}</h4></li>
                 </ul></a>
     	        <a href="{ReblogParentURL}"><ul class="usersul">
-                    <li><h4>Reblogged via: </h4></li>
+                    <li><h4>{text:Reblog Via Label}:  </h4></li>
 	                <li><img src="{ReblogParentPortraitURL-24}"></li>
 	                <li><h4>{ReblogParentName}</h4></li>
                 </ul></a>
@@ -314,7 +318,7 @@
                     <li><h4>{SourceTitle}</h4></li>
                 </ul></a>{/block:ContentSource}
                 {block:Submission}<a href="{SubmitterURL}"><ul class="usersul">
-                    <li><h4>Submitted by: </h4></li>
+                    <li><h4>{text:Submission Label}:  </h4></li>
 	                <li><img src="{SubmitterPortraitURL-24}"></li>
 	                <li><h4>{Submitter}</h4></li>
 	             </ul></a>{/block:Submission}

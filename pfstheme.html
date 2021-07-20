@@ -129,6 +129,9 @@
 		    padding: 20px 20px 0px 20px;
 		    
 		}
+		.intext img {
+		    margin: 0px 20px;
+		}
 		.usersul {
             padding: 0px;
         }
@@ -277,13 +280,13 @@
     	    <!--The post body -->
     	    {block:Text}
                     <a href="{Permalink}">{block:Title}<h3>{Title}</h3>{/block:Title}</a>
-                    {block:NotReblog}{Body}{/block:NotReblog}
+                    {block:NotReblog}<div class="intext">{Body}</div>{/block:NotReblog}
                     {block:RebloggedFrom}{/block:RebloggedFrom}
 	                {block:Reblogs}<div class="miniseparator"></div><a href="{Permalink}"><ul class="usersul">
 	                    <li><img src="{PortraitURL-24}"></li>
 	                    <li><h4>{Username}</h4></li>
 	                </ul></a>
-	                {Body}
+	                <div class="intext">{Body}</div>
 	                {/block:Reblogs}
             {/block:Text}
             
